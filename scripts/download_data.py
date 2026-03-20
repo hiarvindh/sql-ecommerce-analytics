@@ -6,6 +6,7 @@ from kaggle.api.kaggle_api_extended import KaggleApi
 
 
 DATASET = "olistbr/brazilian-ecommerce"
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
 
 
 def ensure_dir(path: Path) -> None:
@@ -13,9 +14,6 @@ def ensure_dir(path: Path) -> None:
 
 
 def download_dataset(download_dir: Path, unzip: bool = True) -> None:
-    """
-    Download the full Olist dataset from Kaggle into download_dir.
-    """
     ensure_dir(download_dir)
 
     api = KaggleApi()
@@ -32,11 +30,6 @@ def download_dataset(download_dir: Path, unzip: bool = True) -> None:
 
 
 def download_file(filename: str, download_dir: Path) -> None:
-    """
-    Download a single file from the Olist dataset.
-    Example:
-        olist_order_items_dataset.csv
-    """
     ensure_dir(download_dir)
 
     api = KaggleApi()
@@ -61,7 +54,8 @@ def main() -> int:
     parser.add_argument(
         "--dir",
         default="data/raw",
-        help="Directory to save downloaded files (default: data/raw)",
+        help="Directory to save downloaded files relative to the project root "
+             "(default: data/raw)",
     )
     parser.add_argument(
         "--file",
@@ -75,7 +69,8 @@ def main() -> int:
     )
 
     args = parser.parse_args()
-    download_dir = Path(args.dir)
+
+    download_dir = (PROJECT_ROOT / args.dir).resolve()
 
     try:
         if args.file:
@@ -84,7 +79,7 @@ def main() -> int:
             download_dataset(download_dir, unzip=not args.no_unzip)
         return 0
     except Exception as exc:
-        print(f"Error: {exc}", file=sys.stderr)
+        print(f"Error: {type(exc).__name__}: {exc}", file=sys.stderr)
         print(
             "Make sure your Kaggle API credentials are configured "
             "(for example via ~/.kaggle/kaggle.json).",

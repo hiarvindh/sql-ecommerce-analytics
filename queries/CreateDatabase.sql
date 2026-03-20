@@ -1,0 +1,2 @@
+CREATE DATABASE ecommerce_analytics_olist;
+USE ecommerce_analytics_olist;

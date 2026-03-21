@@ -64,7 +64,9 @@ ORDER BY total_orders DESC;
 -- =========================================
 -- Question:
 -- What is the average delivery time in days?
-
+SELECT ROUND(AVG(DATEDIFF(order_delivered_customer_date, order_purchase_timestamp)), 2) AS avg_delivery_days
+FROM olist_orders_dataset
+WHERE order_status = 'delivered'AND order_delivered_customer_date IS NOT NULL AND order_purchase_timestamp IS NOT NULL;
 
 -- =========================================
 -- 7. Late Delivery Rate

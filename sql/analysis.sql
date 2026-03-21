@@ -5,7 +5,10 @@ USE ecommerce_analytics_olist;
 -- =========================================
 -- Question:
 -- How many orders were placed each month?
-
+SELECT DATE_FORMAT(order_purchase_timestamp, '%Y-%m') AS order_month, COUNT(*) AS total_orders
+FROM olist_orders_dataset
+GROUP BY order_month
+ORDER BY order_month;
 
 -- =========================================
 -- 2. Revenue Over Time

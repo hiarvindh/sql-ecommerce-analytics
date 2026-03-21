@@ -57,7 +57,7 @@ FROM olist_orders_dataset o
 JOIN olist_customers_dataset c
 ON o.customer_id = c.customer_id
 GROUP BY c.customer_state
-ORDER BY total_orders DESC
+ORDER BY total_orders DESC;
 
 -- =========================================
 -- 6. Average Delivery Time

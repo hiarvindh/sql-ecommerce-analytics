@@ -100,7 +100,10 @@ ORDER BY avg_delivery_days DESC;
 -- =========================================
 -- Question:
 -- How are review scores distributed?
-
+SELECT review_score, COUNT(*) AS total_reviews
+FROM olist_order_reviews_dataset
+GROUP BY review_score
+ORDER BY review_score;
 
 -- =========================================
 -- 10. Late Delivery vs Review Score

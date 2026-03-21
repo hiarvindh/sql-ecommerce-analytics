@@ -27,7 +27,14 @@ ORDER BY order_month;
 -- =========================================
 -- Question:
 -- Which product categories generate the most revenue?
-
+SELECT pct.product_category_name_english AS product_category, ROUND(SUM(oi.price + oi.freight_value), 2) AS total_revenue
+FROM olist_order_items_dataset oi
+JOIN olist_products_dataset p
+ON oi.product_id = p.product_id
+LEFT JOIN product_category_name_translation pct
+ON p.product_category_name = pct.product_category_name
+GROUP BY pct.product_category_name_english
+ORDER BY total_revenue DESC;
 
 -- =========================================
 -- 4. Top Sellers by Revenue

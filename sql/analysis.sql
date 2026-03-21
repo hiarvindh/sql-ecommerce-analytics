@@ -41,7 +41,11 @@ ORDER BY total_revenue DESC;
 -- =========================================
 -- Question:
 -- Which sellers generate the most revenue?
-
+SELECT oi.seller_id,ROUND(SUM(oi.price + oi.freight_value), 2) AS total_revenue
+FROM olist_order_items_dataset oi
+GROUP BY oi.seller_id
+ORDER BY total_revenue DESC
+LIMIT 10;
 
 -- =========================================
 -- 5. Orders by Customer State

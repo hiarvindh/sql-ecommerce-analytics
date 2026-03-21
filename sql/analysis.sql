@@ -15,7 +15,12 @@ ORDER BY order_month;
 -- =========================================
 -- Question:
 -- What is the total revenue generated each month?
-
+SELECT DATE_FORMAT(o.order_purchase_timestamp, '%Y-%m') AS order_month, ROUND(SUM(oi.price + oi.freight_value), 2) AS total_revenue
+FROM olist_orders_dataset o
+JOIN olist_order_items_dataset oi
+    ON o.order_id = oi.order_id
+GROUP BY order_month
+ORDER BY order_month;
 
 -- =========================================
 -- 3. Revenue by Product Category

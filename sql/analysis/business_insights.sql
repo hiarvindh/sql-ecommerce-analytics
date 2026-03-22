@@ -1,4 +1,4 @@
-
+USE ecommerce_analytics_olist;
 -- Monthly Growth Revenue
 WITH monthly_revenue AS (
     SELECT DATE_FORMAT(o.order_purchase_timestamp, '%Y-%m') AS month,

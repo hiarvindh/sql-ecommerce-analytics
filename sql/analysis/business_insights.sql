@@ -31,3 +31,8 @@ JOIN olist_order_reviews_dataset r
 ON o.order_id = r.order_id
 GROUP BY category
 ORDER BY revenue DESC;
+
+-- Revenue + Customer Satisfaction
+
+
+-- Delivery Performance

@@ -34,3 +34,13 @@ ORDER BY lifetime_value DESC
 LIMIT 20;
 
 -- 4. Orders per Customer Distribution
+SELECT order_count, COUNT(*) AS num_customers
+FROM (
+    SELECT c.customer_unique_id, COUNT(DISTINCT o.order_id) AS order_count
+    FROM olist_customers_dataset c
+    JOIN olist_orders_dataset o
+        ON c.customer_id = o.customer_id
+    GROUP BY c.customer_unique_id
+) t
+GROUP BY order_count
+ORDER BY order_count;

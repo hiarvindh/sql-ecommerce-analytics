@@ -23,6 +23,14 @@ FROM (
 ) t;
 
 -- 3. Customer Lifetime Value (Top Customers)
-
+SELECT c.customer_unique_id, COUNT(DISTINCT o.order_id) AS total_orders, ROUND(SUM(oi.price + oi.freight_value), 2) AS lifetime_value
+FROM olist_customers_dataset c
+JOIN olist_orders_dataset o
+ON c.customer_id = o.customer_id
+JOIN olist_order_items_dataset oi
+ON o.order_id = oi.order_id
+GROUP BY c.customer_unique_id
+ORDER BY lifetime_value DESC
+LIMIT 20;
 
 -- 4. Orders per Customer Distribution

@@ -1,3 +1,4 @@
+USE ecommerce_analytics_olist;
 -- 1. Average Order Value (AOV)
 
 

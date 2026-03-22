@@ -33,6 +33,14 @@ GROUP BY category
 ORDER BY revenue DESC;
 
 -- Revenue + Customer Satisfaction
-
+SELECT oi.seller_id, ROUND(SUM(oi.price + oi.freight_value), 2) AS revenue, ROUND(AVG(r.review_score), 2) AS avg_review
+FROM olist_order_items_dataset oi
+JOIN olist_orders_dataset o
+ON oi.order_id = o.order_id
+JOIN olist_order_reviews_dataset r
+ON o.order_id = r.order_id
+GROUP BY oi.seller_id
+HAVING COUNT(*) > 50
+ORDER BY revenue DESC;
 
 -- Delivery Performance

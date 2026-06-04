@@ -4,8 +4,8 @@ SQL e-commerce analytics project using a relational database, automated data ing
 ## Table of Contents
 - [Overview](#overview)
 - [Tech Stack](#tech-stack)
-- [How to Run](#how-to-run)
 - [Project Structure](#project-structure)
+- [How to Run](#how-to-run)
 - [Analysis Goals](#analysis-goals)
 - [SQL Skills Demonstrated](#sql-skills-demonstrated)
 - [Dataset](#dataset)
@@ -19,18 +19,28 @@ This project analyzes a real-world e-commerce dataset using SQL and a structured
 - Relational database
 - Kaggle dataset
 
-## How to Run
-1. Run `CreateDatabase.sql`
-2. Run `CreateTables.sql`
-3. Run `download_data.py`
-4. Run `load_data.py`
-
 ## Project Structure
 - `CreateDatabase.sql` — creates the database
 - `CreateTables.sql` — creates the tables
-- `download_data.py` — downloads the dataset
-- `load_data.py` — loads the dataset into the database
+- `scripts/download_data.py` — downloads the dataset
+- `scripts/load_data.py` — loads the dataset into the database
 - `README.md` — project overview and setup instructions
+
+## How to Run
+
+### 1. Set up the database
+Run the SQL setup files in MySQL Workbench or another MySQL client:
+
+```sql
+CreateDatabase.sql
+CreateTables.sql
+```
+
+### 2. Download the dataset
+From the project root, run:
+```bash
+python3 scripts/download_data.py
+```
 
 ## Analysis Goals
 - Analyze sales and order patterns

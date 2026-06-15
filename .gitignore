@@ -2,3 +2,6 @@
 *.json
 data/.DS_Store
 scripts/.DS_Store
+.env
+.env.save
+.DS_Store
